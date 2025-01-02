@@ -10,6 +10,9 @@
 !.yarn/releases
 !.yarn/versions
 
+# Bun
+bun.lockb
+
 # testing
 /coverage
 
@@ -23,6 +26,7 @@
 # misc
 .DS_Store
 *.pem
+tailwindcss-intellisense.cache
 
 # debug
 npm-debug.log*
@@ -39,3 +43,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-*
+
+# temporary files
+*.tmp
+*.temp
+*.bak
