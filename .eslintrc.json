@@ -7,7 +7,13 @@
   "globals": {
     "React": true
   },
-  "extends": ["airbnb", "prettier", "next/typescript", "eslint:recommended", "next/core-web-vitals"],
+  "extends": [
+    "airbnb",
+    "prettier",
+    "next/typescript",
+    "eslint:recommended",
+    "next/core-web-vitals"
+  ],
   "parserOptions": {
     "ecmaVersion": 12,
     "sourceType": "module",
@@ -38,6 +44,50 @@
     "implicit-arrow-linebreak": "off", // let it handle by prettier
     "react/require-default-props": "off", // let it handle by TypeScript
     "nonblock-statement-body-position": "off", // let it handle by prettier
-    "react/jsx-one-expression-per-line": "off" // let it handle by prettier
+    "react/jsx-one-expression-per-line": "off", // let it handle by prettier
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true
+      }
+    ],
+    "import/order": [
+      1,
+      {
+        "groups": [
+          "external",
+          "builtin",
+          "internal",
+          "sibling",
+          "parent",
+          "index"
+        ]
+      }
+    ],
+    "pathGroups": [
+      {
+        "pattern": "components",
+        "group": "internal"
+      },
+      {
+        "pattern": "common",
+        "group": "internal"
+      },
+      {
+        "pattern": "routes/ **",
+        "group": "internal"
+      },
+      {
+        "pattern": "assets/**",
+        "group": "internal",
+        "position": "after"
+      }
+    ],
+    "pathGroupsExcludedImportTypes": ["internal"],
+    "alphabetize": {
+      "order": "asc",
+      "caseInsensitive": true
+    }
   }
 }
