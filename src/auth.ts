@@ -1,7 +1,10 @@
 import NextAuth from 'next-auth';
-import Google from 'next-auth/providers/google';
-import Github from 'next-auth/providers/github';
+import authConfig from '../auth.config';
+import { FirestoreAdapter } from '@auth/firebase-adapter';
+import { adminFirestore } from '@/lib/firebase/firebase-admin';
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [Google, Github],
+export const { handlers, auth, signIn, signOut } = NextAuth({
+  adapter: FirestoreAdapter(adminFirestore),
+  session: { strategy: 'jwt' },
+  ...authConfig,
 });
