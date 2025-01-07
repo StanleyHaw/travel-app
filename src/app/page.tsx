@@ -1,36 +1,59 @@
-import { signIn } from '@/auth';
+import { auth, signIn } from '@/auth';
+import SignOut from './components/sign-out';
 
-function SignInGoogle() {
+async function Text() {
+  const session = await auth();
+
+  if (!session) {
+    return <div>please Sign in</div>;
+  }
+
   return (
-    <form
-      action={async () => {
-        'use server';
-        await signIn('google');
-      }}
-    >
-      <button type="submit">Signin with Google</button>
-    </form>
+    <div className="container">
+      <pre>{JSON.stringify(session, null, 2)}</pre>
+    </div>
   );
 }
 
-function SignInGithub() {
+async function SignIn() {
+  const session = await auth();
+
   return (
-    <form
-      action={async () => {
-        'use server';
-        await signIn('github');
-      }}
-    >
-      <button type="submit">Signin with GitHub</button>
-    </form>
+    <div>
+      {session?.user && <SignOut />}
+      {!session?.user && (
+        <div className="flex flex-col gap-2">
+          <form
+            action={async () => {
+              'use server';
+              await signIn('google');
+            }}
+          >
+            <button className="w-fit bg-green-500 p-2" type="submit">
+              Signin with Google
+            </button>
+          </form>
+          <form
+            action={async () => {
+              'use server';
+              await signIn('github');
+            }}
+          >
+            <button className="w-fit bg-green-500 p-2" type="submit">
+              Signin with GitHub
+            </button>
+          </form>
+        </div>
+      )}
+    </div>
   );
 }
 
 export default function Home() {
   return (
     <>
-      <SignInGoogle />
-      <SignInGithub />
+      <SignIn />
+      <Text />
     </>
   );
 }
