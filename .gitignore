@@ -55,3 +55,6 @@ next-env.d.ts
 *.tmp
 *.temp
 *.bak
+
+# service account key
+service-account-key.json
